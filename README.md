@@ -11,10 +11,7 @@ kernel should follow.
 ## Usage
 
 1. run `mdsh`
+2. test some commands: `$ ./echo aa bbb cc`
 
-2. test some commands:
 
-    $ ./echo (...)
-
-    outputs every token passed as argument to the standard output. Each token
-    will be separated by a space, and a newline will be insterted at the end.
+`echo` will output every token passed as argument to the standard output. Each token will be separated by a space, and a newline will be insterted at the end.
