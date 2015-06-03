@@ -1,7 +1,12 @@
+all: echo mdsh
+
 echo:
 	gcc -Wall -pedantic-errors echo.c -o echo
 
-clean:
-	rm -f echo
+mdsh:
+	gcc -Wall -pedantic-errors mdsh.c -o mdsh
 
-.PHONY: clean
+clean:
+	rm -f echo mdsh
+
+.PHONY: clean all
