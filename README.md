@@ -9,6 +9,7 @@ Here is a `echo` implementation. A kernel should follow.
 
 ## Usage
 
-    $ ./echo (...) outputs every token passed as argument to the standard
-    output. Each token will be separated by a space, and a newline will be
-    insterted at the end.
+    $ ./echo (...)
+
+    outputs every token passed as argument to the standard output. Each token
+    will be separated by a space, and a newline will be insterted at the end.
