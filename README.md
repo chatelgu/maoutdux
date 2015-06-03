@@ -2,7 +2,7 @@ I’m doing a (free) operating system (just a hobby, won’t be big and professi
 
 Here is a `echo` implementation, and a shell called `mdsh` (MaoutDuxSHell). A kernel should follow.
 
-## Building ![Travis build](https://travis-ci.org/maoutdu/maoutdux.svg?branch=master)
+## Building [![Build Status](https://travis-ci.org/maoutdu/maoutdux.svg?branch=master)](https://travis-ci.org/maoutdu/maoutdux)
 
     $ make
 
