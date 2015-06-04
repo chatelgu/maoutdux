@@ -1,45 +1,45 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
 
 int main (void) {
-	char *p, sp;
-	char buf[1024];
-	char *execargv[256];
-	int execargc;
+	char sp, buf[1024], *p, *execargv[(sizeof(buf) + 1) / 2], **pp;
 	pid_t pid;
 
-	while (1) {
-
+	while (fputs("$ ", stdout), fgets(buf, sizeof(buf) - 1, stdin)) {
 		sp = 1;
-		execargc = 0;
-		fputs("$ ", stdout);
-		fgets(buf, sizeof(buf) - 1, stdin);
+		pp = execargv;
+
 		for (p = buf ; *p ; p++) {
 			if (isspace(*p)) {
 				*p = '\0';
 				sp = 1;
 			} else {
 				if (sp) {
-					execargv[execargc++] = p;
+					*pp++ = p;
+					sp = 0;
 				}
-				sp = 0;
 			}
 		}
 		
-		if (!execargc) continue;
+		if (execargv == pp) continue;
 
-		execargv[execargc] = NULL;
+		*pp++ = NULL;
 			
 		pid = fork();
 		if(pid) {
 			wait(NULL);
 		} else {
 			execv(*execargv, execargv);
+			perror(*execargv);
+			exit(-1);
 		}
 		
 	}
+	puts("");
+	return 0;
 }
