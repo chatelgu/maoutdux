@@ -5,7 +5,6 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-
 int main (void) {
 	char sp, buf[1024], *p, *execargv[(sizeof(buf) + 1) / 2], **pp;
 
@@ -14,11 +13,9 @@ int main (void) {
 			if (isspace(*p)) {
 				*p = '\0';
 				sp = 1;
-			} else {
-				if (sp) {
-					*pp++ = p;
-					sp = 0;
-				}
+			} else if (sp) {
+				*pp++ = p;
+				sp = 0;
 			}
 		}
 		
@@ -34,6 +31,6 @@ int main (void) {
 			exit(-1);
 		}
 	}
-	puts("");
+	putchar('\n');
 	return 0;
 }
