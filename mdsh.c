@@ -8,13 +8,9 @@
 
 int main (void) {
 	char sp, buf[1024], *p, *execargv[(sizeof(buf) + 1) / 2], **pp;
-	pid_t pid;
 
 	while (fputs("$ ", stdout), fgets(buf, sizeof(buf) - 1, stdin)) {
-		sp = 1;
-		pp = execargv;
-
-		for (p = buf ; *p ; p++) {
+		for (sp = 1, pp = execargv, p = buf ; *p ; p++) {
 			if (isspace(*p)) {
 				*p = '\0';
 				sp = 1;
@@ -30,15 +26,13 @@ int main (void) {
 
 		*pp++ = NULL;
 			
-		pid = fork();
-		if(pid) {
+		if(fork()) {
 			wait(NULL);
 		} else {
 			execv(*execargv, execargv);
 			perror(*execargv);
 			exit(-1);
 		}
-		
 	}
 	puts("");
 	return 0;
