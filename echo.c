@@ -1,11 +1,9 @@
 #include <stdio.h>
 
 int main (int argc, char *argv[]) {
-	if (++argv, --argc) {
-		while (putchar (*(*argv)++), **argv);
+	while (--argc) {
+		fputs(*++argv, stdout);
 		putchar (argc == 1 ? '\n' : ' ');
-		return main (argc, argv);
-	} else {
-		return 1;
 	}
+	return 0;
 }
