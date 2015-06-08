@@ -3,7 +3,7 @@
 
 int main (int argc, char *argv[]) {
 	char endchar='\n';
-	if (!strcmp(argv[1],"-n")) {
+	if ((argc >1) && !strcmp(argv[1],"-n")) {
 		--argc;
 		++argv;
 		endchar=0;
